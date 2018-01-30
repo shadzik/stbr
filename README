@@ -1,0 +1,54 @@
+1. HOW THIS WORKS
+
+When you request a spec on IRC (by typing ex. !stbr th-test kernel.spec:LINUX_2_6 smplayer apache)
+the STBR-bot will do the following:
+- check if the spec exists on given branch, and if it does
+- make a list of all the people who commited to this spec, then
+- take the first one of them, and check if that one could send an request to builders,
+- if so, an email is generated and sent to that person, if not, the second person on the list
+  is being checked and so on
+
+2. SETUP
+
+You need to load stbr.tcl into an eggdrop compatible irc-bot (see README.IRCBOT for details). You
+will also need to set up some variables in it and prepare a CVS tree in "scripts" directory. Also
+put cvslog.sh and requesters-${dist}.txt into scripts directory (symlinks would be fine).
+
+To setup STBR log database, create sqlite file with basic structure:
+
+$ sqlite stbrlog.db "
+	create table stbr (
+	date datetime primary key not null,
+	sender varchar(100) not null);
+
+	create table application (
+	date datetime not null,
+	spec varchar(100) not null,
+	branch varchar(50) not null,
+	recipient varchar(100) not null,
+	builder varchar(20) not null,
+	line varchar(3) not null,
+	primary key (date,spec,branch));
+
+	create table status(date datetime not null,
+	spec varchar(100) not null,
+	branch varchar(50) not null,
+	queue_requester varchar(100),
+	queue_date datetime,
+	queue_flags varchar(30),
+	queue_builder_info text,
+	primary key (date,spec,branch));"
+
+Database for unfilled requests:
+
+sqlite unfilled.db "create table unfilled ( date datetime not null, spec varchar(100) not null, branch varchar(50) not null, recipient varchar(100) not null, line varchar(3) not null, primary key(date,spec,branch));"
+
+It sucks, but the database & directory with the db need to be world writable.
+Now ready to use with TCL script and WWW page.
+
+3. AUTHORS (in alphabetical order)
+
+Bartosz 'shadzik' Świątek
+Przemysław 'sparky' Iskra
+Piotr 'vip' Budny
+janitor: Paweł 'duddits' Długosz

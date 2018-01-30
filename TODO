@@ -1,0 +1,9 @@
+HIGH PRIORITY
+- [tcl] registering developers
+- [tcl] enhance !del functionality so that a registered developer can remove a request that was sent to him. The developer has to give a reason why he's removing this particular request (ex. a beta version that must not be sent to builders or sth like that)
+- [tcl] !abuser add|del nick - which will ignore nicks mask for an hour or so (call internal ignore function from bot)
+- [tcl] after implementing these function bum version up to 0.9 and call it rc3 from now on
+
+LOW PRIORITY
+- [web] filters, sorting (partially done)
+- [web] better anti-spam links

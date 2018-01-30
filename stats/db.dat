@@ -1,0 +1,4 @@
+<?
+$DBfile ="../../db/stbrlog.db";
+$DBhandle = new SQLiteDatabase($DBfile);
+?>

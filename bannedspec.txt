@@ -1,0 +1,1 @@
+kde4-l10n-pl.spec kde4-kdeextragear-libs.spec kde4-kdeextragear-graphics.spec kde4-kdeextragear-network.spec openoffice.spec openoffice.org.spec libpng12.spec

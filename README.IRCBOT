@@ -1,0 +1,119 @@
+1. FILES AND DIRS LOCATION USED BY STBR BOT UNDER ITS HOME DIR
+
+~/ircbot
+|
+|-- language
+|   `-- core.english.lang
+|-- logs
+|   |-- pld.log
+|   |-- pldhelp.log
+|   `-- stbr.log
+|-- modules
+|   |-- assoc.so
+|   |-- away.so
+|   |-- blowfish.so
+|   |-- botnetop.so
+|   |-- channels.so
+|   |-- compress.so
+|   |-- console.so
+|   |-- ctcp.so
+|   |-- dns.so
+|   |-- fakebotnet.so
+|   |-- filesys.so
+|   |-- gseen.so
+|   |-- idea.so
+|   |-- irc.so
+|   |-- irctree.so
+|   |-- megahal.so
+|   |-- notes.so
+|   |-- rijndael.so
+|   |-- seen.so
+|   |-- server.so
+|   |-- share.so
+|   |-- stats.so
+|   |-- transfer.so
+|   |-- twofish.so
+|   |-- uptime.so
+|   |-- wire.so
+|   `-- woobie.so
+|-- scripts
+|   |-- CONTENTS
+|   |-- action.fix.tcl
+|   |-- alltools.tcl
+|   |-- bannedspec.txt
+|   |-- cancellation.sh
+|   |-- cmd.txt
+|   |-- cmd_resolve.tcl
+|   |-- cmdbook.txt
+|   |-- compat.tcl
+|   |-- cron
+|   |-- cvs.tcl
+|   |-- cvs.txt
+|   |-- cvslog.sh
+|   |-- getops.tcl
+|   |-- hc-cron.spec
+|   |-- klined.tcl
+|   |-- maintenance_off.txt
+|   |-- notes2.tcl
+|   |-- packages
+|   |-- pld-builder.new
+|   |-- ques5.tcl
+|   |-- queue_parser.pl
+|   |-- quotepass.tcl
+|   |-- quotepong.tcl
+|   |-- requesters-th.txt
+|   |-- requesters-ti-dev.txt
+|   |-- requesters-ti.txt
+|   |-- sentinel.tcl
+|   |-- stbr.log
+|   |-- stbr.tcl
+|   |-- stbr_mailreader.py
+|   |-- userinfo.tcl
+|   `-- weed
+|-- stbr-FN.conf
+|-- stbr.chan
+|-- stbr.conf
+|-- stbr.notes
+`-- stbr.user
+
+2. BOT - HOW IT WORKS
+
+Just run:
+
+# eggdrop stbr.conf
+
+(or stbr-FN.conf on Freenode) and you're all set. See 'man eggdrop' for more options. For example
+you would possibly need '-nt' switch for testing purposes (bot session stays attached to a console).
+
+You can now telnet to the bot and set up some variables you will need for maintenance:
+
+# telnet localhost/IP <PORT NUMBER> <-- this is set up in the configuration file
+
+If you're doing it for the first time login as 'NEW'.
+
+After setting up credentials it's time to set hostmask and some attributes so you could for example be
+able to delete build requests from the users.
+
+In the bot telnet session type:
+
+.+host <nick> *!<nick>@pld-users.org
+
+This way the bot can properly identify you over the IRC.
+
+To be able to issue administrative tasks to STBR you will need an "S" attribute (see stbr.tcl for
+details). That's easy to handle (once you know how to do it):
+
+.chattr <nick> +S
+
+Do not forget to issue:
+
+.save
+
+upon exiting telnet session so everything you set will stay in place (and be saved to a user file).
+
+For complete list of options see this site:
+http://www.egghelp.org/
+It will give you great starting point for poking around with eggdrop.
+
+3. AUTHOR
+Paweł 'duddits' Długosz
